@@ -1,0 +1,19 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  background-color: black;
+  /* background-color: #434343; */
+  /* background: url(https://images.pexels.com/photos/14994126/pexels-photo-14994126.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+body button:hover {
+  border-color: transparent;
+}
