@@ -22,3 +22,22 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+node_modules/
+.next/
+*.log
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# production
+/build
+
+package-lock.json
+.DS_Store
+.idea
+
+.env.local
+.env
+
