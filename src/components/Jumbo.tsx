@@ -11,7 +11,7 @@ export const JumboEl = styled.div<{ backdrop: string }>`
   align-items: center;
   padding: 0rem;
   color: white;
-  box-shadow: 0 0 9px 3px white;
+  display: none;
   /* margin-top: 4rem; */
   transition: background 1s;
   background: url(${(props) => props.backdrop}) no-repeat;
@@ -19,8 +19,9 @@ export const JumboEl = styled.div<{ backdrop: string }>`
   background-size: cover;
   background-position: center;
 
-  h2 {
-    padding: 1rem;
+  @media (min-width: 1024px) {
+    box-shadow: 0 0 9px 3px white;
+    display: block;
   }
 `;
 
@@ -33,19 +34,19 @@ const Jumbo = ({ styleOveride }: { styleOveride: object }) => {
   );
 
   useEffect(() => {
-    console.log('ran useEffect');
-
-    const interval = setInterval(() => {
-      let chosenMovie = Math.floor(Math.random() * results.length);
-      setbackground(
-        `${BACKDROP_PATH}${results[chosenMovie]?.['backdrop_path']}`,
-      );
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
+    if (results) {
+      const interval = setInterval(() => {
+        let chosenMovie = Math.floor(Math.random() * results.length);
+        setbackground(
+          `${BACKDROP_PATH}${results[chosenMovie]?.['backdrop_path']}`,
+        );
+      }, 3500);
+      return () => clearInterval(interval);
+    }
+  }, [results]);
 
   return (
-    <JumboEl style={styleOveride} backdrop={background}>
+    <JumboEl style={styleOveride} backdrop={background} className="jumboEL">
       {/* <h2>TypeScript Redux Cinema</h2> */}
     </JumboEl>
   );

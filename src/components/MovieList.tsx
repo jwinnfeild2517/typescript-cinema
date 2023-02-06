@@ -9,10 +9,16 @@ import { MoviesStateType } from '../types';
 import Jumbo from './Jumbo';
 
 const GridWrapper = styled.section`
+  padding: 0 1rem;
   h2 {
     text-transform: capitalize;
     text-align: left;
   }
+
+  @media (min-width: 1024px) {
+    padding: 0;
+  }
+
 `;
 const MovieGrid = styled.div`
   display: grid;

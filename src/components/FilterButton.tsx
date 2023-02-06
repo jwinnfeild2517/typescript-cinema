@@ -2,7 +2,16 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { changeQuery } from '../store/actions';
 
-export const FilterOptions: object = {
+const categories = [
+  "top_rated",
+  "upcoming",
+  "popular",
+  "now_playing",
+] as const
+
+type Category = typeof categories[number]
+
+export const FilterOptions: Record<Category, string> = {
   top_rated: 'Top Rated',
   upcoming: 'Up Coming',
   popular: 'Popular',
@@ -15,11 +24,23 @@ const Filter = styled.button`
   border-radius: 5px;
   padding: 0.3rem 1rem;
   font-weight: bold;
-  width: 100%;
+  width: 100px;
   margin-bottom: 1.5rem;
+  /* margin-right: 1rem; */
 
   &:hover {
     background-color: #003049;
+  }
+
+
+  @media (min-width: 680px) {
+    width: 135px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 175px;
+    flex-wrap: wrap;
+    width: 100%;
   }
 `;
 
@@ -31,7 +52,10 @@ export const FilterButtons = () => {
     dispatch(changeQuery(type));
   };
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'space-between'
+    }}>
       {filterKeys.map((i: string) => (
         <Filter
           type="button"
@@ -39,7 +63,7 @@ export const FilterButtons = () => {
           key={i}
           onClick={(e) => handleClick(e.currentTarget.value)}
         >
-          {FilterOptions[i]}
+          {FilterOptions[i as Category]}
         </Filter>
       ))}
     </div>

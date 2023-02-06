@@ -6,24 +6,51 @@ import { getMovieDetail } from '../moviesAPI';
 
 const MovieWrapper = styled.div<{ backdrop: string }>`
   position: relative;
-  padding-top: 50vh;
   background: url(${(props) => props.backdrop}) no-repeat;
   background-size: cover;
+
+  @media (min-width: 1024px) {
+    padding-top: 50vh;
+  }
+
+
 `;
 
 const MovieInfo = styled.div`
   background: black;
   text-align: left;
-  padding: 2rem 10%;
+  padding: 1rem;
   display: flex;
-  > div {
-    margin-left: 20px;
-  }
-  img {
-    position: relative;
-    top: -5rem;
+  flex-direction: column;
+
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    > div {
+      margin-left: 20px;
+    }
+
+    img {
+      position: relative;
+      top: -5rem;
+    }
   }
 `;
+
+const MovieDetailText = styled.div`
+ margin: 0;
+
+ h1 {
+  font-size: 1rem;
+ }
+
+ @media (min-width: 1024px) {
+    h1 {
+      font-size: 3.2rem;
+    }
+  }
+
+`
 
 const LoadingContainer = styled.div`
   background: black;
@@ -78,22 +105,21 @@ const MovieDetail = ({
 
   return movie ? (
     <MovieWrapper
-      data-testid="backdrop"
+      className='movie-detail-wrapper'
       backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}
     >
       <MovieInfo>
         <div id={`${movie.id}`}>
           <img
-            data-testid="poster "
             src={`${POSTER_PATH}${movie.poster_path}`}
             alt={movie.title}
           />
         </div>
-        <div>
-          <h1 data-testid="movie-title">{movie.title}</h1>
+        <MovieDetailText>
+          <h1 >{movie.title}</h1>
           <h3>{movie.release_date}</h3>
           <p>{movie.overview}</p>
-        </div>
+        </MovieDetailText>
       </MovieInfo>
     </MovieWrapper>
   ) : (

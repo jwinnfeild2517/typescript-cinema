@@ -38,6 +38,7 @@ const HomePage = () => {
           styleOveride={{
             height: '600px',
             boxShadow: 'none',
+            display: 'block',
           }}
         />
       </SideBar>
