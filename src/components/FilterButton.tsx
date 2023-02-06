@@ -18,30 +18,39 @@ export const FilterOptions: Record<Category, string> = {
   now_playing: 'Now Playing',
 };
 
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  /* @media (min-width: 1024px) {
+    flex-wrap: wrap
+  } */
+
+`
+
 const Filter = styled.button`
   background: #fe7f2d;
   color: white;
   border-radius: 5px;
   padding: 0.3rem 1rem;
   font-weight: bold;
-  width: 100px;
   margin-bottom: 1.5rem;
-  /* margin-right: 1rem; */
+  flex: 1;
+  margin-right: 15px;
 
   &:hover {
     background-color: #003049;
   }
 
 
-  @media (min-width: 680px) {
+  /* @media (min-width: 680px) {
     width: 135px;
   }
 
   @media (min-width: 1024px) {
-    width: 175px;
-    flex-wrap: wrap;
     width: 100%;
-  }
+  } */
 `;
 
 export const FilterButtons = () => {
@@ -52,10 +61,7 @@ export const FilterButtons = () => {
     dispatch(changeQuery(type));
   };
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'space-between'
-    }}>
+    <FilterContainer>
       {filterKeys.map((i: string) => (
         <Filter
           type="button"
@@ -66,6 +72,6 @@ export const FilterButtons = () => {
           {FilterOptions[i as Category]}
         </Filter>
       ))}
-    </div>
+    </FilterContainer>
   );
 };
