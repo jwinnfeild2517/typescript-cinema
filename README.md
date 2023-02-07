@@ -1,7 +1,7 @@
 # TypeScript Cinema
 ## Goal
 
-Our goal is to create a React/Redux app to browse movie using the [The Movie Db API](https://developers.themoviedb.org/3/getting-started/introduction).
+Our goal is to create a React/Redux app to browse movies using the [The Movie Db API](https://developers.themoviedb.org/3/getting-started/introduction).
 
 ## Visual
 <img src="./public/app-visual.jpg">
@@ -20,7 +20,7 @@ Install [Node](https://nodejs.org/en/download/)
 Clone Repo to your local machine
 
 ```
-git clone https://github.com/jwinnfeild2517/react-graphql-spacex.git
+git clone https://github.com/jwinnfeild2517/typescript-cinema.git
 ```
 Install Dependencies
 ```
@@ -32,4 +32,4 @@ start the development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:5174) to view it in the browser.
+Open [http://localhost:5174](http://localhost:5174) to view it in the browser.
