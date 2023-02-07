@@ -25,7 +25,7 @@ export const JumboEl = styled.div<{ backdrop: string }>`
   }
 `;
 
-const Jumbo = ({ styleOveride }: { styleOveride: object }) => {
+const Jumbo = ({ styleOveride }: { styleOveride?: object }) => {
   const [background, setbackground] = useState(
     'https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
   );

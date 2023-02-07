@@ -1,26 +1,56 @@
-export const getMovieDetail = async (movieId: string) => {
+import { MovieType } from "./types";
+type MovieResultsData = {
+  movie_results: Array<MovieType>;
+}
+
+type ExternalIdsData = {
+  id: number,
+  imdb_id: string,
+  wikidata_id: string,
+  facebook_id: string | null,
+  instagram_id: string | null,
+  twitter_id: string | null
+}
+
+async function fetchExternalIds(movieId: string): Promise<ExternalIdsData> {
   const extenalIdApi = `https://api.themoviedb.org/3/movie/${movieId}/external_ids?api_key=bdb54de4ff1eee95cbe1c800bd3cc44a`;
 
-  let externalId = await fetch(extenalIdApi);
-  externalId = await externalId.json();
+  const response = await fetch(extenalIdApi)
+  if (response.ok) {
+    const data: ExternalIdsData = await response.json()
+    const imdbId = data?.imdb_id
+    if (imdbId) {
+      return data
+    } else {
+      return Promise.reject(new Error(`movie not found`))
+    }
+  } else {
+    console.log(response);
 
-  const findMovieApi = `https://api.themoviedb.org/3/find/${externalId.imdb_id}?api_key=bdb54de4ff1eee95cbe1c800bd3cc44a&language=en-US&external_source=imdb_id`;
+    const error = new Error('Movie not found')
+    return Promise.reject(error)
+  }
+}
 
-  let movie = await fetch(findMovieApi);
-  movie = await movie.json();
+export const getMovieDetail = async (movieId: string): Promise<MovieType> => {
+  const { imdb_id }: ExternalIdsData = await fetchExternalIds(movieId);
 
-  return movie.movie_results[0];
-};
+  const findMovieApi = `https://api.themoviedb.org/3/find/${imdb_id}?api_key=bdb54de4ff1eee95cbe1c800bd3cc44a&language=en-US&external_source=imdb_id`;
 
-const api = {
-  movies:
-    'https://api.themoviedb.org/3/discover/movie?api_key=bdb54de4ff1eee95cbe1c800bd3cc44a&adult=false&page=5',
-  trending:
-    'https://api.themoviedb.org/3/trending/all/week?api_key=bdb54de4ff1eee95cbe1c800bd3cc44a&adult=false',
-  bestDramas:
-    'https://api.themoviedb.org/3/discover/movie?api_key=bdb54de4ff1eee95cbe1c800bd3cc44a&with_genres=18&primary_release_year=2021',
-  liamNeeson:
-    'https://api.themoviedb.org/3/discover/movie?api_key=bdb54de4ff1eee95cbe1c800bd3cc44a&adult=false&certification_country=US&certification=R&sort_by=revenue.desc&with_cast=3896',
+  const response = await fetch(findMovieApi);
+
+  if (response.ok) {
+    const data: MovieResultsData = await response.json();
+    const movieResults = data?.movie_results
+    if (movieResults && movieResults.length > 0) {
+      return movieResults[0]
+    }else {
+      return Promise.reject(new Error(`No results found for this movie ${imdb_id}`))
+    }
+  }else {
+    const error = new Error('movie results not found for imbd-id: ${imdb_id}')
+    return Promise.reject(error)
+  }
 };
 
 export default async function (query: string, page: number) {

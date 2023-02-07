@@ -93,13 +93,14 @@ const MovieDetail = ({
 
   const fetchMovieDetail = async () => {
     const movie = await getMovieDetail(id);
+    console.log(movie);
+
     setMovie(movie);
   };
 
   useEffect(() => {
     if (movie === null) {
       fetchMovieDetail();
-      console.log('useEffect');
     }
   }, []);
 

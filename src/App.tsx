@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
       <Nav>
-        Typescript Redux Cinema{' '}
+        Typescript Redux Cinema
       </Nav>
       <Router>
         <Switch>

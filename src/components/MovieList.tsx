@@ -50,7 +50,7 @@ export const MovieList = () => {
   // use the useDispatch hook to call actions
   const dispatch = useDispatch();
 
-  // fectch function call the api asynchronously & dispatch and action
+  // fetch function call the api asynchronously & dispatch and action
   const fetchMovies = async () => {
     const data = await getMovies(query, page);
     dispatch(

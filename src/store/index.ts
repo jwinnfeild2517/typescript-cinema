@@ -19,7 +19,6 @@ function movieResults(
     case 'GET_MOVIES':
       return {
         ...state,
-        // results: state.results.concat(data.results),
         results: data.results,
       };
     case 'CHANGE_PAGE':
