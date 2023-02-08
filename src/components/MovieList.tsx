@@ -68,7 +68,7 @@ export const MovieList = () => {
   return (
     <GridWrapper>
       <Jumbo />
-      <h2>{query.replace('_', ' ')}</h2>
+      <h2 id='current-filter'>{query.replace('_', ' ')}</h2>
       {results.length ? (
         <MovieGrid>
           {results.map((movie: any) => (

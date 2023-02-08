@@ -11,17 +11,9 @@ const Layout = styled.section`
   width: auto;
   max-width: 1100px;
 
-  /* @media (min-width: 768px) {
-    width: 750px;
-  } */
-
   @media (min-width: 992px) {
     grid-template-columns: 25% 75%;
   }
-
-  /* @media (min-width: 1200px) {
-    width: 1100px;
-  } */
 `;
 
 const SideBar = styled.aside`
@@ -36,7 +28,7 @@ const HomePage = () => {
         <FilterButtons />
         <Jumbo
           styleOveride={{
-            height: '600px',
+            height: '480px',
             boxShadow: 'none',
             display: 'block',
           }}

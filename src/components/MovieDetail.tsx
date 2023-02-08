@@ -102,6 +102,7 @@ const MovieDetail = ({
     if (movie === null) {
       fetchMovieDetail();
     }
+    window.scrollTo(0, 0);
   }, []);
 
   return movie ? (

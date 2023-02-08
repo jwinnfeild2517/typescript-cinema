@@ -9,7 +9,9 @@ const PaginationEl = styled.button`
   width: 300px;
   color: white;
   &:hover {
-    background-color: #fe7f2d;
+    @media (min-width: 1024px) {
+      background-color: #fe7f2d;
+    }
   }
 `;
 

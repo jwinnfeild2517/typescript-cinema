@@ -20,7 +20,9 @@ const Nav = styled.nav`
 
 function App() {
   return (
-    <div>
+    <div style={{
+      minHeight: '100vh'
+    }}>
       <Nav>
         Typescript Redux Cinema
       </Nav>

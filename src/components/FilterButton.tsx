@@ -23,10 +23,6 @@ const FilterContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  /* @media (min-width: 1024px) {
-    flex-wrap: wrap
-  } */
-
 `
 
 const Filter = styled.button`
@@ -39,18 +35,14 @@ const Filter = styled.button`
   flex: 1;
   margin-right: 15px;
 
+  a {
+    color: inherit;
+  }
+
   &:hover {
     background-color: #003049;
   }
 
-
-  /* @media (min-width: 680px) {
-    width: 135px;
-  }
-
-  @media (min-width: 1024px) {
-    width: 100%;
-  } */
 `;
 
 export const FilterButtons = () => {
@@ -69,7 +61,7 @@ export const FilterButtons = () => {
           key={i}
           onClick={(e) => handleClick(e.currentTarget.value)}
         >
-          {FilterOptions[i as Category]}
+          <a href='#current-filter'>{FilterOptions[i as Category]}</a>
         </Filter>
       ))}
     </FilterContainer>

@@ -12,16 +12,21 @@ const ImageWrapper = styled.div`
   max-height: 12rem;
   position: relative;
   transition: height 2s;
-  &:hover {
-    transform: scale(1.06);
-    div {
-      transition: height 1s;
-      height: 100%;
-      opacity: 0.9;
 
-      background-color: #003049;
+
+  &:hover {
+    @media (min-width: 1024px) {
+      transform: scale(1.06);
+      div {
+        transition: height 1s;
+        height: 100%;
+        opacity: 0.9;
+
+        background-color: #003049;
+      }
     }
   }
+
   /* box-shadow: 0 0 15px black; */
 
   img {
